@@ -1,42 +1,29 @@
 import win32gui, win32con, os
+import shutil
 
-filter = "Text files\0*.txt\0"
-customfilter = "Other file types\0*.*\0"
+def file_upload():
+    filter = "Text files\0*.txt\0"
+    customfilter = "Other file types\0*.*\0"
 
-fname, customfilter, flags = win32gui.GetSaveFileNameW(
-    InitialDir=os.environ["temp"],
-    Flags=win32con.OFN_ALLOWMULTISELECT | win32con.OFN_EXPLORER,
-    File="somefilename",
-    DefExt="txt",
-    Title="GetSaveFileNameW",
-    Filter=filter,
-    CustomFilter=customfilter,
-    FilterIndex=1,
-)
+#Prompt for file input
 
-#print("save file names:", repr(fname))
-#print("filter used:", repr(customfilter))
-#print("Flags:", flags)
-#for k, v in list(win32con.__dict__.items()):
-    #if k.startswith("OFN_") and flags & v:
-        #print("\t" + k)
+    file_path, customfilter, flags = win32gui.GetSaveFileNameW(
+        InitialDir=os.environ["temp"],
+        Flags=win32con.OFN_ALLOWMULTISELECT | win32con.OFN_EXPLORER,
+        File="somefilename",
+        DefExt="txt",
+        Title="GetSaveFileNameW",
+        Filter=filter,
+        CustomFilter=customfilter,
+        FilterIndex=1,
+    )
+            
+    #Translate file_path given to correct path name and give string value
+    
+    file_path_str = str(file_path)
 
-#fname, customfilter, flags = win32gui.GetOpenFileNameW(
-    #InitialDir=os.environ["temp"],
-    #Flags=win32con.OFN_ALLOWMULTISELECT | win32con.OFN_EXPLORER,
-    #File="somefilename",
-    #DefExt="txt",
-    #Title="GetOpenFileNameW",
-    #Filter=filter,
-    #CustomFilter=customfilter,
-    #FilterIndex=0,
-#)
+    #Copy chosen file to upload folder
 
-#print("open file names:", repr(fname))
-#print("filter used:", repr(customfilter))
-#print("Flags:", flags)
-#for k, v in list(win32con.__dict__.items()):
-    #if k.startswith("OFN_") and flags & v:
-        #print("\t" + k)
-   
-print(fname)
+    shutil.copy(file_path_str, 'C:/Program Files (x86)/Tier2Tickets/upload')
+
+file_upload()
