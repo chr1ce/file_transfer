@@ -5,7 +5,7 @@ def file_upload():
     
 #Define file types
     
-    filter = "Text files\0*.txt\0"
+    filter = "Text files\0*.txt\0Image files\0*.png;*.jpg\0"
     customfilter = "Other file types\0*.*\0"
 
 #Prompt for file input
@@ -13,7 +13,7 @@ def file_upload():
     file_path, customfilter, flags = win32gui.GetSaveFileNameW(
         InitialDir=os.environ["temp"],
         Flags=win32con.OFN_ALLOWMULTISELECT | win32con.OFN_EXPLORER,
-        File="somefilename",
+        File="file",
         DefExt="txt",
         Title="GetSaveFileNameW",
         Filter=filter,
