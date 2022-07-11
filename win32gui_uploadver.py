@@ -2,6 +2,9 @@ import win32gui, win32con, os
 import shutil
 
 def file_upload():
+    
+#Define file types
+    
     filter = "Text files\0*.txt\0"
     customfilter = "Other file types\0*.*\0"
 
@@ -18,7 +21,7 @@ def file_upload():
         FilterIndex=1,
     )
             
-    #Translate file_path given to correct path name and give string value
+    #Give string value to file_path
     
     file_path_str = str(file_path)
 
