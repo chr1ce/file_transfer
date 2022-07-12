@@ -3,9 +3,9 @@ import shutil
 
 def file_upload():
     
-#Define file types
+#Define file types accepted
     
-    filter = "Text files\0*.txt\0Image files\0*.png;*.jpg\0"
+    filter = "All files\0*.*\0"
     customfilter = "Other file types\0*.*\0"
 
 #Prompt for file input
