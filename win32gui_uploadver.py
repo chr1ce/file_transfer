@@ -1,23 +1,18 @@
 import win32gui, win32con, os
 import shutil
 
-def file_upload():
+def file_upload(title="Upload File", filetypes="All files\0*.*\0", location=os.environ["HOMEPATH"]):
     
-#Define file types accepted
-    
-    filter = "All files\0*.*\0"
     customfilter = "Other file types\0*.*\0"
-
+    
 #Prompt for file input
 
     file_path, customfilter, flags = win32gui.GetSaveFileNameW(
-        InitialDir=os.environ["temp"],
+        InitialDir=location,
         Flags=win32con.OFN_ALLOWMULTISELECT | win32con.OFN_EXPLORER,
-        File="file",
-        DefExt="txt",
-        Title="GetSaveFileNameW",
-        Filter=filter,
+        Title=title,
         CustomFilter=customfilter,
+        Filter=filetypes,
         FilterIndex=1,
     )
             
